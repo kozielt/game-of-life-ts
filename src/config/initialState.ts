@@ -1,4 +1,4 @@
-export const initialState: boolean[][] = [
+export const initialBoardState: boolean[][] = [
   [false, false, false, false, false, false, false, false, false],
   [false, false, false, false, false, false, false, false, false],
   [false, false, false, false, false, false, false, false, false],

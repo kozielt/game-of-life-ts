@@ -1,0 +1,7 @@
+export const GAME_LIMITS = {
+  MIN_SIZE: 1,
+  MAX_SIZE: 20,
+
+  MIN_INTERVAL: 50,
+  MAX_INTERVAL: 60 * 1000,
+};

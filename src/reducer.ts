@@ -1,10 +1,4 @@
-export enum ActionTypes {
-  TICK = 'tick',
-}
-
-export interface Action {
-  type: ActionTypes;
-}
+import { Action, ActionTypes } from './actions';
 
 export function getIndexesToTry(
   currentIndex: number,
@@ -38,17 +32,56 @@ export function getNewCellState(
   return liveCellsAround === 3;
 }
 
-export function reducer(state: boolean[][], action: Action): boolean[][] {
+interface Config {
+  interval: number;
+  isRunning: boolean;
+  boardSize: number;
+}
+
+interface State {
+  boardState: boolean[][];
+  config: Config;
+}
+
+export function reducer(state: State, action: Action): State {
   switch (action.type) {
     case ActionTypes.TICK: {
-      return state.map((row, rowIndex) =>
+      const { boardState } = state;
+      const updatedBoardState = boardState.map((row, rowIndex) =>
         row.map((cell, cellIndex) => {
-          const rowAbove = state[rowIndex - 1];
-          const rowUnder = state[rowIndex + 1];
+          const rowAbove = boardState[rowIndex - 1];
+          const rowUnder = boardState[rowIndex + 1];
           return getNewCellState(cellIndex, rowAbove, row, rowUnder);
         }),
       );
+      return {
+        ...state,
+        boardState: updatedBoardState,
+      };
     }
+
+    case ActionTypes.INTERVAL_CHANGE: {
+      const interval = action.newInterval || 3000;
+      return {
+        ...state,
+        config: { ...state.config, interval },
+      };
+    }
+
+    case ActionTypes.START_GAME: {
+      return {
+        ...state,
+        config: { ...state.config, isRunning: true },
+      };
+    }
+
+    case ActionTypes.STOP_GAME: {
+      return {
+        ...state,
+        config: { ...state.config, isRunning: false },
+      };
+    }
+
     default:
       return state;
   }

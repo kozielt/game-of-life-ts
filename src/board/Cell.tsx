@@ -5,6 +5,7 @@ import { THEME } from '../config';
 const cellClassName = css`
   width: 50px;
   height: 50px;
+  border: 1px solid black;
 `;
 
 const activeClassName = css`
@@ -26,9 +27,7 @@ const Cell: React.FC<CellProps> = ({ isActive }: CellProps): JSX.Element => {
         cellClassName,
         isActive ? activeClassName : notActiveClassName,
       )}
-    >
-      {isActive ? 'active' : 'not'}
-    </div>
+    />
   );
 };
 
