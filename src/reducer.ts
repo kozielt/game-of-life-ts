@@ -6,17 +6,22 @@ export interface Action {
   type: ActionTypes;
 }
 
+export function getIndexesToTry(
+  currentIndex: number,
+  currentRow: boolean[],
+): number[] {
+  return [currentIndex - 1, currentIndex, currentIndex + 1].filter(
+    el => el >= 0 && el < currentRow.length,
+  );
+}
+
 export function getNewCellState(
   currentElementIndex: number,
   rowAbove: any,
   currentRow: boolean[],
   rowUnder: any,
 ): boolean {
-  const indexesToTry: number[] = [
-    currentElementIndex - 1,
-    currentElementIndex,
-    currentElementIndex + 1,
-  ].filter(el => el >= 0);
+  const indexesToTry = getIndexesToTry(currentElementIndex, currentRow);
 
   const liveCellsAround = [currentRow, rowAbove, rowUnder]
     .filter(Boolean)

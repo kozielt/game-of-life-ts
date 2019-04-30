@@ -1,6 +1,15 @@
-import { getNewCellState } from './reducer';
+import { getNewCellState, getIndexesToTry } from './reducer';
 
 describe('reducer', () => {
+  describe('getIndexesToTry', () => {
+    it('should return valid indexes', () => {
+      const currentRowMock = [true, true, true];
+      expect(getIndexesToTry(1, currentRowMock)).toEqual([0, 1, 2]);
+      expect(getIndexesToTry(0, currentRowMock)).toEqual([0, 1]);
+      expect(getIndexesToTry(2, currentRowMock)).toEqual([1, 2]);
+    });
+  });
+
   describe('getNewCellState', () => {
     it('should return true for 3 active cells around and false cellState', () => {
       const result = getNewCellState(
