@@ -1,9 +1,8 @@
-import React, { useState, useContext } from 'react';
+import React, { useState } from 'react';
 import { css } from 'emotion';
 import { GAME_LIMITS } from '../config';
-import { StateContext } from '../App';
 import Header from './Header';
-import { changeInterval, startGame, stopGame } from '../actions';
+import Buttons from './Buttons';
 
 // todo modify flex grow via query
 const mgmtClass = css`
@@ -21,7 +20,6 @@ const rowClass = css`
 const Management: React.FC = (): JSX.Element => {
   const [boardSize, setBoardSize] = useState('');
   const [interval, setInterval] = useState(3000);
-  const { state, dispatch } = useContext(StateContext);
   return (
     <div className={mgmtClass}>
       <Header />
@@ -49,20 +47,13 @@ const Management: React.FC = (): JSX.Element => {
           onChange={e => setInterval(Number(e.target.value))}
         />
       </div>
-      <button
-        onClick={() => {
-          dispatch(changeInterval(interval));
+      <Buttons
+        interval={interval}
+        resetLocalState={() => {
           setBoardSize('');
-          setInterval(1000);
+          setInterval(3000);
         }}
-      >
-        Save Changes
-      </button>
-      {state.config.isRunning ? (
-        <button onClick={() => dispatch(stopGame())}>Pause Game</button>
-      ) : (
-        <button onClick={() => dispatch(startGame())}>Start Game</button>
-      )}
+      />
     </div>
   );
 };

@@ -6,11 +6,13 @@ const className = css`
   display: flex;
 `;
 
-interface Props {
+interface IBoardColumn {
   rowState: boolean[];
 }
 
-const BoardColumn: React.FC<Props> = ({ rowState }: Props): JSX.Element => {
+const BoardColumn: React.FC<IBoardColumn> = ({
+  rowState,
+}: IBoardColumn): JSX.Element => {
   return (
     <div className={className}>
       {rowState.map((isActive, cellIndex) => (

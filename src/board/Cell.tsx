@@ -16,11 +16,11 @@ const notActiveClassName = css`
   background-color: ${THEME.DISABLE_COLOR};
 `;
 
-interface CellProps {
+interface ICell {
   isActive: boolean;
 }
 
-const Cell: React.FC<CellProps> = ({ isActive }: CellProps): JSX.Element => {
+const Cell: React.FC<ICell> = ({ isActive }: ICell): JSX.Element => {
   return (
     <div
       className={cx(

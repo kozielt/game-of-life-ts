@@ -12,13 +12,11 @@ const boardClassName = css`
   flex-grow: 3;
 `;
 
-interface BoardProps {
+interface IBoard {
   boardState: boolean[][];
 }
 
-const Board: React.FC<BoardProps> = ({
-  boardState,
-}: BoardProps): JSX.Element => {
+const Board: React.FC<IBoard> = ({ boardState }: IBoard): JSX.Element => {
   return (
     <div className={boardClassName}>
       {boardState.map((rowArray, rowIndex) => (
