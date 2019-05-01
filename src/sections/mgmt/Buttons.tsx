@@ -1,6 +1,17 @@
 import React, { useContext } from 'react';
+import { css } from 'emotion';
 import { changeInterval, resetGame, startGame, stopGame } from '../../actions';
 import { DispatchContext } from '../../App';
+import Button from './Button';
+
+const buttonsCss = css`
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  & > button {
+    margin-bottom: 10px;
+  }
+`;
 
 interface IButtons {
   isRunning: boolean;
@@ -15,22 +26,22 @@ const Buttons: React.FC<IButtons> = ({
 }: IButtons): JSX.Element => {
   const dispatch = useContext(DispatchContext);
   return (
-    <>
-      <button
+    <div className={buttonsCss}>
+      <Button
         onClick={() => {
           dispatch(changeInterval(interval));
           resetLocalState();
         }}
       >
         Save Changes
-      </button>
+      </Button>
       {isRunning ? (
-        <button onClick={() => dispatch(stopGame())}>Pause Game</button>
+        <Button onClick={() => dispatch(stopGame())}>Pause Game</Button>
       ) : (
-        <button onClick={() => dispatch(startGame())}>Start Game</button>
+        <Button onClick={() => dispatch(startGame())}>Start Game</Button>
       )}
-      <button onClick={() => dispatch(resetGame())}>Reset Game</button>
-    </>
+      <Button onClick={() => dispatch(resetGame())}>Reset Game</Button>
+    </div>
   );
 };
 

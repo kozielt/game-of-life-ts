@@ -1,10 +1,11 @@
 import React from 'react';
 import { css } from 'emotion';
+import { THEME } from '../../config';
 
 const statusCss = css`
   width: 100%;
   text-align: center;
-  color: lightgray;
+  color: ${THEME.DEFAULT_FONT_COLOR};
 `;
 
 const runningColor = css`
