@@ -1,14 +1,16 @@
 import React from 'react';
 import { css } from 'emotion';
+import { THEME } from '../../config';
 
 const containerCss = css`
-  display: flex;
-  justify-content: center;
+  width: 100%;
+  text-align: center;
+  color: ${THEME.DEFAULT_FONT_COLOR};
 `;
 
 const Header: React.FC = (): JSX.Element => (
   <div className={containerCss}>
-    <h2>Configuration</h2>
+    <h1>Configuration</h1>
   </div>
 );
 

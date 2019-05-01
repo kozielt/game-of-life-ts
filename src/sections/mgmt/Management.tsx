@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { css } from 'emotion';
-import { GAME_LIMITS } from '../../config';
+import { GAME_LIMITS, THEME } from '../../config';
 import Header from './Header';
 import Buttons from './Buttons';
 
@@ -13,8 +13,21 @@ const mgmtClass = css`
 
 const rowClass = css`
   display: flex;
-  justify-content: space-evenly;
-  margin-bottom: 20px;
+  margin: 0 20px 20px 20px;
+  align-items: center;
+`;
+
+const labelCss = css`
+  flex-grow: 1;
+  color: ${THEME.DEFAULT_FONT_COLOR};
+  font-size: ${THEME.FONT_SIZE};
+`;
+
+const inputCss = css`
+  width: 70px;
+  padding: 6px 10px;
+  border-radius: 10px;
+  font-size: ${THEME.FONT_SIZE};
 `;
 
 interface IManagement {
@@ -24,29 +37,34 @@ interface IManagement {
 const Management: React.FC<IManagement> = ({
   isRunning,
 }: IManagement): JSX.Element => {
-  const [boardSize, setBoardSize] = useState('');
+  const [boardSize, setBoardSize] = useState(0);
   const [interval, setInterval] = useState(3000);
   return (
     <div className={mgmtClass}>
       <Header />
       <div className={rowClass}>
-        <label htmlFor="boardSize">Board Size</label>
+        <label htmlFor="boardSize" className={labelCss}>
+          Board Size
+        </label>
         <input
+          className={inputCss}
           id="boardSize"
           type="number"
-          style={{ width: 50 }}
           min={GAME_LIMITS.MIN_SIZE}
           max={GAME_LIMITS.MAX_SIZE}
           value={boardSize}
-          onChange={e => setBoardSize(e.target.value)}
+          onChange={e => setBoardSize(Number(e.target.value))}
         />
       </div>
       <div className={rowClass}>
-        <label htmlFor="interval">Interval</label>
+        <label htmlFor="interval" className={labelCss}>
+          Interval
+        </label>
         <input
+          className={inputCss}
           id="interval"
           type="number"
-          style={{ width: 50 }}
+          style={{ width: 70 }}
           min={GAME_LIMITS.MIN_INTERVAL}
           max={GAME_LIMITS.MAX_INTERVAL}
           value={interval}
@@ -57,7 +75,7 @@ const Management: React.FC<IManagement> = ({
         isRunning={isRunning}
         interval={interval}
         resetLocalState={() => {
-          setBoardSize('');
+          setBoardSize(0);
           setInterval(3000);
         }}
       />
