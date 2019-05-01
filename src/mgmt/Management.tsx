@@ -17,7 +17,13 @@ const rowClass = css`
   margin-bottom: 20px;
 `;
 
-const Management: React.FC = (): JSX.Element => {
+interface IManagement {
+  isRunning: boolean;
+}
+
+const Management: React.FC<IManagement> = ({
+  isRunning,
+}: IManagement): JSX.Element => {
   const [boardSize, setBoardSize] = useState('');
   const [interval, setInterval] = useState(3000);
   return (
@@ -48,6 +54,7 @@ const Management: React.FC = (): JSX.Element => {
         />
       </div>
       <Buttons
+        isRunning={isRunning}
         interval={interval}
         resetLocalState={() => {
           setBoardSize('');

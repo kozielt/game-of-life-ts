@@ -3,7 +3,7 @@ import { css } from 'emotion';
 import Board from './board';
 import Management from './mgmt';
 import { reducer } from './reducer';
-import { ActionTypes } from './actions';
+import { tick } from './actions';
 import { initialBoardState } from './config';
 
 const appClassName = css`
@@ -21,10 +21,7 @@ const initialState = {
   },
 };
 
-export const StateContext = React.createContext({
-  dispatch: Function.prototype,
-  state: initialState,
-});
+export const DispatchContext = React.createContext(Function.prototype);
 
 const App: React.FC = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
@@ -34,24 +31,21 @@ const App: React.FC = () => {
   } = state;
 
   useEffect(() => {
-    const cleanupTimer = setInterval(
-      () => {
-        if (isRunning) {
-          dispatch({ type: ActionTypes.TICK });
-        }
-      },
-      interval,
-    );
+    const cleanupTimer = setInterval(() => {
+      if (isRunning) {
+        dispatch(tick());
+      }
+    }, interval);
     return () => clearInterval(cleanupTimer);
   }, [isRunning, interval]);
 
   return (
-    <StateContext.Provider value={{ dispatch, state }}>
+    <DispatchContext.Provider value={dispatch}>
       <div className={appClassName}>
-        <Management />
+        <Management isRunning={isRunning} />
         <Board boardState={boardState} />
       </div>
-    </StateContext.Provider>
+    </DispatchContext.Provider>
   );
 };
 

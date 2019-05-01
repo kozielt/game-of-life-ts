@@ -1,17 +1,19 @@
 import React, { useContext } from 'react';
-import { changeInterval, startGame, stopGame } from '../actions';
-import { StateContext } from '../App';
+import { changeInterval, resetGame, startGame, stopGame } from '../actions';
+import { DispatchContext } from '../App';
 
 interface IButtons {
+  isRunning: boolean;
   interval: number;
   resetLocalState: () => void;
 }
 
 const Buttons: React.FC<IButtons> = ({
+  isRunning,
   interval,
   resetLocalState,
 }: IButtons): JSX.Element => {
-  const { state, dispatch } = useContext(StateContext);
+  const dispatch = useContext(DispatchContext);
   return (
     <>
       <button
@@ -22,11 +24,12 @@ const Buttons: React.FC<IButtons> = ({
       >
         Save Changes
       </button>
-      {state.config.isRunning ? (
+      {isRunning ? (
         <button onClick={() => dispatch(stopGame())}>Pause Game</button>
       ) : (
         <button onClick={() => dispatch(startGame())}>Start Game</button>
       )}
+      <button onClick={() => dispatch(resetGame())}>Reset Game</button>
     </>
   );
 };

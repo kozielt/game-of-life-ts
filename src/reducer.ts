@@ -1,4 +1,5 @@
 import { Action, ActionTypes } from './actions';
+import { initialBoardState } from './config';
 
 export function getIndexesToTry(
   currentIndex: number,
@@ -68,19 +69,23 @@ export function reducer(state: State, action: Action): State {
       };
     }
 
-    case ActionTypes.START_GAME: {
+    case ActionTypes.START_GAME:
       return {
         ...state,
         config: { ...state.config, isRunning: true },
       };
-    }
 
-    case ActionTypes.STOP_GAME: {
+    case ActionTypes.STOP_GAME:
       return {
         ...state,
         config: { ...state.config, isRunning: false },
       };
-    }
+
+    case ActionTypes.RESET_GAME:
+      return {
+        ...state,
+        boardState: initialBoardState,
+      };
 
     default:
       return state;
