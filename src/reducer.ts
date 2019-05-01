@@ -1,6 +1,12 @@
 import { Action, ActionTypes } from './actions';
 import { initialBoardState } from './config';
 
+export enum GameStatus {
+  RUNNING = 'running',
+  PAUSED = 'paused',
+  EDIT = 'edit',
+}
+
 export function getIndexesToTry(
   currentIndex: number,
   currentRow: boolean[],
@@ -35,7 +41,7 @@ export function getNewCellState(
 
 interface Config {
   interval: number;
-  isRunning: boolean;
+  gameState: GameStatus;
   boardSize: number;
 }
 
@@ -72,13 +78,13 @@ export function reducer(state: State, action: Action): State {
     case ActionTypes.START_GAME:
       return {
         ...state,
-        config: { ...state.config, isRunning: true },
+        config: { ...state.config, gameState: GameStatus.RUNNING },
       };
 
     case ActionTypes.STOP_GAME:
       return {
         ...state,
-        config: { ...state.config, isRunning: false },
+        config: { ...state.config, gameState: GameStatus.PAUSED },
       };
 
     case ActionTypes.RESET_GAME:
@@ -86,6 +92,34 @@ export function reducer(state: State, action: Action): State {
         ...state,
         boardState: initialBoardState,
       };
+
+    case ActionTypes.EDIT_GAME:
+      return {
+        ...state,
+        config: { ...state.config, gameState: GameStatus.EDIT },
+      };
+
+    case ActionTypes.EDIT_CELL: {
+      const { boardState } = state;
+      const { cellCoordinate } = action;
+      if (!cellCoordinate) {
+        return state;
+      }
+      return {
+        ...state,
+        boardState: boardState.map((row, index) => {
+          if (index === cellCoordinate.rowIndex) {
+            return row.map((cellState, cellIndex) => {
+              if (cellCoordinate.cellIndex === cellIndex) {
+                return !cellState;
+              }
+              return cellState;
+            });
+          }
+          return row;
+        }),
+      };
+    }
 
     default:
       return state;

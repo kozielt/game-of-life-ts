@@ -1,6 +1,7 @@
 import React from 'react';
 import { css } from 'emotion';
 import { THEME } from '../../config';
+import { GameStatus } from '../../reducer';
 
 const statusCss = css`
   width: 100%;
@@ -12,23 +13,27 @@ const runningColor = css`
   color: lime;
 `;
 
-const pausedColor = css`
+const notActiveColor = css`
   color: orange;
 `;
 
 interface IStatus {
-  isRunning: boolean;
+  gameStatus: GameStatus;
 }
 
-const Status: React.FC<IStatus> = ({ isRunning }: IStatus): JSX.Element => {
+const Status: React.FC<IStatus> = ({ gameStatus }: IStatus): JSX.Element => {
   return (
     <div className={statusCss}>
       <h1>
         Game Status:{' '}
-        {isRunning ? (
+        {gameStatus === GameStatus.RUNNING && (
           <span className={runningColor}>Running</span>
-        ) : (
-          <span className={pausedColor}>Paused</span>
+        )}
+        {gameStatus === GameStatus.PAUSED && (
+          <span className={notActiveColor}>Paused</span>
+        )}
+        {gameStatus === GameStatus.EDIT && (
+          <span className={notActiveColor}>Edit</span>
         )}
       </h1>
     </div>

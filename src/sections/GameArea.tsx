@@ -2,6 +2,7 @@ import React from 'react';
 import { css } from 'emotion';
 import Board from './board';
 import Status from './status';
+import { GameStatus } from '../reducer';
 
 const gameAreaCss = css`
   display: flex;
@@ -10,18 +11,18 @@ const gameAreaCss = css`
 `;
 
 interface IGameArea {
-  isRunning: boolean;
+  gameState: GameStatus;
   boardState: boolean[][];
 }
 
 const GameArea: React.FC<IGameArea> = ({
-  isRunning,
+  gameState,
   boardState,
 }: IGameArea): JSX.Element => {
   return (
     <div className={gameAreaCss}>
-      <Status isRunning={isRunning} />
-      <Board boardState={boardState} />
+      <Status gameStatus={gameState} />
+      <Board boardState={boardState} isEdit={GameStatus.EDIT === gameState} />
     </div>
   );
 };

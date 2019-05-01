@@ -3,6 +3,7 @@ import { css } from 'emotion';
 import { GAME_LIMITS, THEME } from '../../config';
 import Header from './Header';
 import Buttons from './Buttons';
+import { GameStatus } from '../../reducer';
 
 // todo modify flex grow via query
 const mgmtClass = css`
@@ -31,11 +32,11 @@ const inputCss = css`
 `;
 
 interface IManagement {
-  isRunning: boolean;
+  gameState: GameStatus;
 }
 
 const Management: React.FC<IManagement> = ({
-  isRunning,
+  gameState,
 }: IManagement): JSX.Element => {
   const [boardSize, setBoardSize] = useState(0);
   const [interval, setInterval] = useState(3000);
@@ -72,7 +73,7 @@ const Management: React.FC<IManagement> = ({
         />
       </div>
       <Buttons
-        isRunning={isRunning}
+        gameState={gameState}
         interval={interval}
         resetLocalState={() => {
           setBoardSize(0);

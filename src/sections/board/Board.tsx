@@ -14,13 +14,22 @@ const boardClassName = css`
 
 interface IBoard {
   boardState: boolean[][];
+  isEdit: boolean;
 }
 
-const Board: React.FC<IBoard> = ({ boardState }: IBoard): JSX.Element => {
+const Board: React.FC<IBoard> = ({
+  boardState,
+  isEdit,
+}: IBoard): JSX.Element => {
   return (
     <div className={boardClassName}>
       {boardState.map((rowArray, rowIndex) => (
-        <BoardColumn rowState={rowArray} key={rowIndex} />
+        <BoardColumn
+          rowState={rowArray}
+          key={rowIndex}
+          rowIndex={rowIndex}
+          isEdit={isEdit}
+        />
       ))}
     </div>
   );

@@ -2,30 +2,42 @@ import React from 'react';
 import { css, cx } from 'emotion';
 import { THEME } from '../../config';
 
-const cellClassName = css`
+const cellCss = css`
   width: 50px;
   height: 50px;
   border: 1px solid black;
 `;
 
-const activeClassName = css`
+const activeCss = css`
   background-color: ${THEME.ACTIVE_COLOR};
 `;
 
-const notActiveClassName = css`
+const notActiveCss = css`
   background-color: ${THEME.DISABLE_COLOR};
+`;
+
+const editCss = css`
+  cursor: pointer;
 `;
 
 interface ICell {
   isActive: boolean;
+  isEdit: boolean;
+  editAction: () => void;
 }
 
-const Cell: React.FC<ICell> = ({ isActive }: ICell): JSX.Element => {
+const Cell: React.FC<ICell> = ({
+  isActive,
+  isEdit,
+  editAction,
+}: ICell): JSX.Element => {
   return (
     <div
+      onClick={() => isEdit && editAction()}
       className={cx(
-        cellClassName,
-        isActive ? activeClassName : notActiveClassName,
+        cellCss,
+        isActive ? activeCss : notActiveCss,
+        isEdit ? editCss : null,
       )}
     />
   );

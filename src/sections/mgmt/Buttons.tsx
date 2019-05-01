@@ -1,8 +1,15 @@
 import React, { useContext } from 'react';
 import { css } from 'emotion';
-import { changeInterval, resetGame, startGame, stopGame } from '../../actions';
+import {
+  changeInterval,
+  resetGame,
+  startGame,
+  stopGame,
+  editGame,
+} from '../../actions';
 import { DispatchContext } from '../../App';
 import Button from './Button';
+import { GameStatus } from '../../reducer';
 
 const buttonsCss = css`
   display: flex;
@@ -14,13 +21,13 @@ const buttonsCss = css`
 `;
 
 interface IButtons {
-  isRunning: boolean;
+  gameState: GameStatus;
   interval: number;
   resetLocalState: () => void;
 }
 
 const Buttons: React.FC<IButtons> = ({
-  isRunning,
+  gameState,
   interval,
   resetLocalState,
 }: IButtons): JSX.Element => {
@@ -35,10 +42,14 @@ const Buttons: React.FC<IButtons> = ({
       >
         Save Changes
       </Button>
-      {isRunning ? (
+      {gameState === GameStatus.RUNNING && (
         <Button onClick={() => dispatch(stopGame())}>Pause Game</Button>
-      ) : (
+      )}
+      {gameState !== GameStatus.RUNNING && (
         <Button onClick={() => dispatch(startGame())}>Start Game</Button>
+      )}
+      {gameState !== GameStatus.EDIT && (
+        <Button onClick={() => dispatch(editGame())}>Edit Game</Button>
       )}
       <Button onClick={() => dispatch(resetGame())}>Reset Game</Button>
     </div>
