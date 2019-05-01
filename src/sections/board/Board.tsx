@@ -4,12 +4,12 @@ import BoardColumn from './BoardColumn';
 
 // todo modify flex grow via query
 const boardClassName = css`
-  height: 100vh;
+  height: 100%;
   display: flex;
   align-items: center;
   justify-content: center;
   flex-direction: column;
-  flex-grow: 3;
+  flex-grow: 1;
 `;
 
 interface IBoard {

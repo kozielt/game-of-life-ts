@@ -1,6 +1,6 @@
 import React, { useContext } from 'react';
-import { changeInterval, resetGame, startGame, stopGame } from '../actions';
-import { DispatchContext } from '../App';
+import { changeInterval, resetGame, startGame, stopGame } from '../../actions';
+import { DispatchContext } from '../../App';
 
 interface IButtons {
   isRunning: boolean;

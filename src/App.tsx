@@ -1,7 +1,6 @@
 import React, { useReducer, useEffect } from 'react';
 import { css } from 'emotion';
-import Board from './board';
-import Management from './mgmt';
+import { GameArea, Management } from './sections';
 import { reducer } from './reducer';
 import { tick } from './actions';
 import { initialBoardState } from './config';
@@ -43,7 +42,7 @@ const App: React.FC = () => {
     <DispatchContext.Provider value={dispatch}>
       <div className={appClassName}>
         <Management isRunning={isRunning} />
-        <Board boardState={boardState} />
+        <GameArea isRunning={isRunning} boardState={boardState} />
       </div>
     </DispatchContext.Provider>
   );

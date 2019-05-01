@@ -1,6 +1,6 @@
 import React, { useState } from 'react';
 import { css } from 'emotion';
-import { GAME_LIMITS } from '../config';
+import { GAME_LIMITS } from '../../config';
 import Header from './Header';
 import Buttons from './Buttons';
 

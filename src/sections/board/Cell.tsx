@@ -1,6 +1,6 @@
 import React from 'react';
 import { css, cx } from 'emotion';
-import { THEME } from '../config';
+import { THEME } from '../../config';
 
 const cellClassName = css`
   width: 50px;
