@@ -6,13 +6,15 @@ import Buttons from './Buttons';
 import { GameStatus } from '../../reducer';
 
 // todo modify flex grow via query
-const mgmtClass = css`
+const managementCss = css`
   flex-grow: 1;
+  display: flex;
+  flex-direction: column;
   height: 100vh;
   background-color: #363a42;
 `;
 
-const rowClass = css`
+const rowCss = css`
   display: flex;
   margin: 0 20px 20px 20px;
   align-items: center;
@@ -41,9 +43,9 @@ const Management: React.FC<IManagement> = ({
   const [boardSize, setBoardSize] = useState(0);
   const [interval, setInterval] = useState(3000);
   return (
-    <div className={mgmtClass}>
+    <div className={managementCss}>
       <Header />
-      <div className={rowClass}>
+      <div className={rowCss}>
         <label htmlFor="boardSize" className={labelCss}>
           Board Size
         </label>
@@ -57,7 +59,7 @@ const Management: React.FC<IManagement> = ({
           onChange={e => setBoardSize(Number(e.target.value))}
         />
       </div>
-      <div className={rowClass}>
+      <div className={rowCss}>
         <label htmlFor="interval" className={labelCss}>
           Interval
         </label>

@@ -15,6 +15,19 @@ const buttonsCss = css`
   display: flex;
   align-items: center;
   flex-direction: column;
+  flex-grow: 1;
+
+  & > * {
+    margin-bottom: 10px;
+  }
+`;
+
+const bottomButtonsCss = css`
+  flex-grow: 1;
+  display: flex;
+  flex-direction: column;
+  justify-content: flex-end;
+
   & > button {
     margin-bottom: 10px;
   }
@@ -42,16 +55,18 @@ const Buttons: React.FC<IButtons> = ({
       >
         Save Changes
       </Button>
-      {gameState === GameStatus.RUNNING && (
-        <Button onClick={() => dispatch(stopGame())}>Pause Game</Button>
-      )}
-      {gameState !== GameStatus.RUNNING && (
-        <Button onClick={() => dispatch(startGame())}>Start Game</Button>
-      )}
-      {gameState !== GameStatus.EDIT && (
-        <Button onClick={() => dispatch(editGame())}>Edit Game</Button>
-      )}
-      <Button onClick={() => dispatch(resetGame())}>Reset Game</Button>
+      <div className={bottomButtonsCss}>
+        {gameState === GameStatus.RUNNING && (
+          <Button onClick={() => dispatch(stopGame())}>Pause Game</Button>
+        )}
+        {gameState !== GameStatus.RUNNING && (
+          <Button onClick={() => dispatch(startGame())}>Start Game</Button>
+        )}
+        {gameState !== GameStatus.EDIT && (
+          <Button onClick={() => dispatch(editGame())}>Edit Game</Button>
+        )}
+        <Button onClick={() => dispatch(resetGame())}>Reset Game</Button>
+      </div>
     </div>
   );
 };
