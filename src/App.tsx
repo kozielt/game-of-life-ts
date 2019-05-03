@@ -13,6 +13,7 @@ const appClassName = css`
 
 const initialState = {
   boardState: initialBoardState,
+  round: 0,
   config: {
     interval: 3000,
     gameState: GameStatus.PAUSED,
@@ -25,7 +26,7 @@ export const DispatchContext = React.createContext(Function.prototype);
 const App: React.FC = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
   const [isSidePanelVisible, setSidePanelVisible] = useState(true);
-  const { boardState, config } = state;
+  const { boardState, round, config } = state;
   const { interval, gameState } = config;
 
   useEffect(() => {
@@ -44,6 +45,7 @@ const App: React.FC = () => {
         <GameArea
           boardState={boardState}
           gameConfig={config}
+          round={round}
           isSidePanelVisible={isSidePanelVisible}
           switchSidePanel={() => setSidePanelVisible(!isSidePanelVisible)}
         />

@@ -16,6 +16,7 @@ interface IGameArea {
   boardState: boolean[][];
   gameConfig: GameConfig;
   isSidePanelVisible: boolean;
+  round: number;
   switchSidePanel: () => void;
 }
 
@@ -23,11 +24,12 @@ const GameArea: React.FC<IGameArea> = ({
   boardState,
   gameConfig,
   isSidePanelVisible,
+  round,
   switchSidePanel,
 }): JSX.Element => {
   return (
     <div className={gameAreaCss}>
-      <Status gameConfig={gameConfig} />
+      <Status gameConfig={gameConfig} round={round}/>
       <Board
         boardState={boardState}
         isEdit={GameStatus.EDIT === gameConfig.gameState}

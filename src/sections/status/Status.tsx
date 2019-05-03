@@ -18,16 +18,17 @@ const notActiveColor = css`
   color: orange;
 `;
 
-const boardSizeCss = css`
+const textSpaceCss = css`
   display: inline-block;
   margin-right: 10px;
 `;
 
 interface IStatus {
   gameConfig: GameConfig;
+  round: number,
 }
 
-const Status: React.FC<IStatus> = ({ gameConfig }): JSX.Element => {
+const Status: React.FC<IStatus> = ({ gameConfig, round }): JSX.Element => {
   const { gameState, interval, boardSize } = gameConfig;
   return (
     <div className={statusCss}>
@@ -43,7 +44,8 @@ const Status: React.FC<IStatus> = ({ gameConfig }): JSX.Element => {
           <span className={notActiveColor}>Edit</span>
         )}
       </h1>
-      <Text className={boardSizeCss}>Board Size: {boardSize}</Text>
+      <Text className={textSpaceCss}>Round: {round}</Text>
+      <Text className={textSpaceCss}>Board Size: {boardSize}</Text>
       <Text>Interval: {interval} ms</Text>
     </div>
   );

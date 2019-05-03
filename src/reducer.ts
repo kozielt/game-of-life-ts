@@ -51,13 +51,14 @@ export interface GameConfig {
 
 interface State {
   boardState: boolean[][];
+  round: number;
   config: GameConfig;
 }
 
 export function reducer(state: State, action: Action): State {
   switch (action.type) {
     case ActionTypes.TICK: {
-      const { boardState } = state;
+      const { boardState, round } = state;
       const updatedBoardState = boardState.map((row, rowIndex) =>
         row.map((cell, cellIndex) => {
           const rowAbove = boardState[rowIndex - 1];
@@ -68,6 +69,7 @@ export function reducer(state: State, action: Action): State {
       return {
         ...state,
         boardState: updatedBoardState,
+        round: round + 1,
       };
     }
 
@@ -108,6 +110,7 @@ export function reducer(state: State, action: Action): State {
       return {
         ...state,
         boardState: initialBoardState,
+        round: 0,
       };
 
     case ActionTypes.EDIT_GAME:
