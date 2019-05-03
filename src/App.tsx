@@ -1,7 +1,7 @@
 import React, { useEffect, useReducer, useState } from 'react';
 import { css } from 'emotion';
 import { GameArea, Management } from './sections';
-import { GameStatus, reducer } from './reducer';
+import { GameStatus, reducer, State } from './reducer';
 import { tick } from './actions';
 import { initialBoardState } from './config';
 
@@ -11,7 +11,7 @@ const appClassName = css`
   display: flex;
 `;
 
-const initialState = {
+const initialState: State = {
   boardState: initialBoardState,
   round: 0,
   config: {

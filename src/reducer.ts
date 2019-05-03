@@ -1,12 +1,6 @@
 import { Action, ActionTypes } from './actions';
 import { initialBoardState } from './config';
 
-export enum GameStatus {
-  RUNNING = 'running',
-  PAUSED = 'paused',
-  EDIT = 'edit',
-}
-
 export function generateEmptyBoard(boardSize: number): boolean[][] {
   return new Array(boardSize).fill(new Array(boardSize).fill(false));
 }
@@ -43,16 +37,22 @@ export function getNewCellState(
   return liveCellsAround === 3;
 }
 
-export interface GameConfig {
-  interval: number;
-  gameState: GameStatus;
-  boardSize: number;
+export enum GameStatus {
+  EDIT = 'edit',
+  PAUSED = 'paused',
+  RUNNING = 'running',
 }
 
-interface State {
+export interface GameConfig {
+  boardSize: number;
+  gameState: GameStatus;
+  interval: number;
+}
+
+export interface State {
   boardState: boolean[][];
-  round: number;
   config: GameConfig;
+  round: number;
 }
 
 export function reducer(state: State, action: Action): State {
