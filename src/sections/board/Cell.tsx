@@ -30,7 +30,7 @@ const Cell: React.FC<ICell> = ({
   isActive,
   isEdit,
   editAction,
-}: ICell): JSX.Element => {
+}): JSX.Element => {
   return (
     <div
       onClick={() => isEdit && editAction()}

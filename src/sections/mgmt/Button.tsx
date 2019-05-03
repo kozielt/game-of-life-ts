@@ -13,7 +13,7 @@ interface IButton {
   onClick: () => void;
 }
 
-const Button: React.FC<IButton> = (props: IButton): JSX.Element => {
+const Button: React.FC<IButton> = (props): JSX.Element => {
   return <button className={buttonCss} {...props} />;
 };
 

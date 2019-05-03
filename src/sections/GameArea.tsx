@@ -18,7 +18,7 @@ interface IGameArea {
 const GameArea: React.FC<IGameArea> = ({
   gameState,
   boardState,
-}: IGameArea): JSX.Element => {
+}): JSX.Element => {
   return (
     <div className={gameAreaCss}>
       <Status gameStatus={gameState} />

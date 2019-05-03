@@ -37,9 +37,7 @@ interface IManagement {
   gameState: GameStatus;
 }
 
-const Management: React.FC<IManagement> = ({
-  gameState,
-}: IManagement): JSX.Element => {
+const Management: React.FC<IManagement> = ({ gameState }): JSX.Element => {
   const [boardSize, setBoardSize] = useState(0);
   const [interval, setInterval] = useState(3000);
   return (

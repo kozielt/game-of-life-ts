@@ -21,7 +21,7 @@ interface IStatus {
   gameStatus: GameStatus;
 }
 
-const Status: React.FC<IStatus> = ({ gameStatus }: IStatus): JSX.Element => {
+const Status: React.FC<IStatus> = ({ gameStatus }): JSX.Element => {
   return (
     <div className={statusCss}>
       <h1>

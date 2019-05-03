@@ -43,7 +43,7 @@ const Buttons: React.FC<IButtons> = ({
   gameState,
   interval,
   resetLocalState,
-}: IButtons): JSX.Element => {
+}): JSX.Element => {
   const dispatch = useContext(DispatchContext);
   return (
     <div className={buttonsCss}>

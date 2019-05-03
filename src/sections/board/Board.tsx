@@ -20,7 +20,7 @@ interface IBoard {
 const Board: React.FC<IBoard> = ({
   boardState,
   isEdit,
-}: IBoard): JSX.Element => {
+}): JSX.Element => {
   return (
     <div className={boardClassName}>
       {boardState.map((rowArray, rowIndex) => (
