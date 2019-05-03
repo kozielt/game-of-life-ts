@@ -8,6 +8,10 @@ const gameAreaCss = css`
   display: flex;
   flex-direction: column;
   flex-grow: 3;
+
+  @media only screen and (min-width: 1100px) {
+    flex-grow: 6;
+  }
 `;
 
 interface IGameArea {

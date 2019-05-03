@@ -11,6 +11,7 @@ const buttonCss = css`
 
 interface IButton {
   onClick: () => void;
+  disabled?: boolean,
 }
 
 const Button: React.FC<IButton> = (props): JSX.Element => {

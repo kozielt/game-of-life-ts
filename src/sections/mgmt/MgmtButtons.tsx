@@ -1,12 +1,6 @@
 import React, { useContext } from 'react';
 import { css } from 'emotion';
-import {
-  changeInterval,
-  resetGame,
-  startGame,
-  stopGame,
-  editGame,
-} from '../../actions';
+import { resetGame, startGame, stopGame, editGame } from '../../actions';
 import { DispatchContext } from '../../App';
 import Button from './Button';
 import { GameStatus } from '../../reducer';
@@ -31,30 +25,29 @@ const bottomButtonsCss = css`
   & > button {
     margin-bottom: 10px;
   }
+
+  @media only screen and (min-width: 1100px) {
+    flex-direction: row;
+    align-items: flex-end;
+
+    & > button {
+      max-height: 36px;
+    
+      :not(:last-child) {
+        margin-right: 10px;
+      }
+    }
+  }
 `;
 
 interface IButtons {
   gameState: GameStatus;
-  interval: number;
-  resetLocalState: () => void;
 }
 
-const Buttons: React.FC<IButtons> = ({
-  gameState,
-  interval,
-  resetLocalState,
-}): JSX.Element => {
+const MgmtButtons: React.FC<IButtons> = ({ gameState }): JSX.Element => {
   const dispatch = useContext(DispatchContext);
   return (
     <div className={buttonsCss}>
-      <Button
-        onClick={() => {
-          dispatch(changeInterval(interval));
-          resetLocalState();
-        }}
-      >
-        Save Changes
-      </Button>
       <div className={bottomButtonsCss}>
         {gameState === GameStatus.RUNNING && (
           <Button onClick={() => dispatch(stopGame())}>Pause Game</Button>
@@ -71,4 +64,4 @@ const Buttons: React.FC<IButtons> = ({
   );
 };
 
-export default Buttons;
+export default MgmtButtons;

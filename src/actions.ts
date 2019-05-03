@@ -1,6 +1,6 @@
 export enum ActionTypes {
   TICK = 'tick',
-  INTERVAL_CHANGE = 'change_interval',
+  CONFIGURATION_UPDATE = 'configuration_update',
   START_GAME = 'start_game',
   STOP_GAME = 'stop_game',
   RESET_GAME = 'reset_game',
@@ -16,12 +16,17 @@ export interface CellCoordinate {
 export interface Action {
   type: ActionTypes;
   newInterval?: number;
+  newBoardSize?: number;
   cellCoordinate?: CellCoordinate;
 }
 
-export const changeInterval = (newInterval: number): Action => ({
-  type: ActionTypes.INTERVAL_CHANGE,
+export const updateConfiguration = (
+  newInterval: number,
+  newBoardSize: number,
+): Action => ({
+  type: ActionTypes.CONFIGURATION_UPDATE,
   newInterval,
+  newBoardSize,
 });
 
 export const tick = (): Action => ({ type: ActionTypes.TICK });

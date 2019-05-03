@@ -1,4 +1,8 @@
-import { getNewCellState, getIndexesToTry } from './reducer';
+import {
+  getNewCellState,
+  getIndexesToTry,
+  generateEmptyBoard,
+} from './reducer';
 
 describe('reducer', () => {
   describe('getIndexesToTry', () => {
@@ -115,5 +119,14 @@ describe('reducer', () => {
       undefined,
     );
     expect(thirdResult).toBeFalsy();
+  });
+
+  it('should generate empty matrix with false values', () => {
+    const result = generateEmptyBoard(3);
+    expect(result).toEqual([
+      [false, false, false],
+      [false, false, false],
+      [false, false, false],
+    ]);
   });
 });

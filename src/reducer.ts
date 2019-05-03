@@ -7,6 +7,10 @@ export enum GameStatus {
   EDIT = 'edit',
 }
 
+export function generateEmptyBoard(boardSize: number): boolean[][] {
+  return new Array(boardSize).fill(new Array(boardSize).fill(false));
+}
+
 export function getIndexesToTry(
   currentIndex: number,
   currentRow: boolean[],
@@ -67,8 +71,21 @@ export function reducer(state: State, action: Action): State {
       };
     }
 
-    case ActionTypes.INTERVAL_CHANGE: {
+    case ActionTypes.CONFIGURATION_UPDATE: {
       const interval = action.newInterval || 3000;
+
+      const boardSize = action.newBoardSize || 8;
+      const hasBoardSizeChanged = state.config.boardSize !== boardSize;
+
+      if (hasBoardSizeChanged) {
+        const boardState = generateEmptyBoard(boardSize);
+        return {
+          ...state,
+          boardState,
+          config: { ...state.config, interval, boardSize },
+        };
+      }
+
       return {
         ...state,
         config: { ...state.config, interval },
