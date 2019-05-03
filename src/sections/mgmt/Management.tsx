@@ -5,7 +5,6 @@ import Configuration from './Configuration';
 import MgmtButtons from './MgmtButtons';
 
 const managementCss = css`
-  height: 100vh;
   width: 450px;
   background-color: #363a42;
   transition: width 1s, margin 1s ease-in-out;

@@ -1,5 +1,5 @@
 import { Action, ActionTypes } from './actions';
-import { initialBoardState } from './config';
+import { initialBoard, INTERVAL, BOARD_SIZE } from './config';
 
 export function generateEmptyBoard(boardSize: number): boolean[][] {
   return new Array(boardSize).fill(new Array(boardSize).fill(false));
@@ -74,9 +74,9 @@ export function reducer(state: State, action: Action): State {
     }
 
     case ActionTypes.CONFIGURATION_UPDATE: {
-      const interval = action.newInterval || 3000;
+      const interval = action.newInterval || INTERVAL;
 
-      const boardSize = action.newBoardSize || 8;
+      const boardSize = action.newBoardSize || BOARD_SIZE;
       const hasBoardSizeChanged = state.config.boardSize !== boardSize;
 
       if (hasBoardSizeChanged) {
@@ -109,7 +109,7 @@ export function reducer(state: State, action: Action): State {
     case ActionTypes.RESET_GAME:
       return {
         ...state,
-        boardState: initialBoardState,
+        boardState: initialBoard,
         round: 0,
       };
 

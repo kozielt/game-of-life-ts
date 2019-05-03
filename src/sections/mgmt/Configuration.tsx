@@ -1,6 +1,6 @@
 import React, { useContext, useState } from 'react';
 import { css } from 'emotion';
-import { GAME_LIMITS, THEME } from '../../config';
+import { GAME_LIMITS, THEME, BOARD_SIZE, INTERVAL } from '../../config';
 import { updateConfiguration } from '../../actions';
 import { DispatchContext } from '../../App';
 import { Text } from '../../shared';
@@ -40,8 +40,8 @@ const isSaveDisabled = (boardSize: number, interval: number): boolean => {
 };
 
 const Configuration: React.FC = () => {
-  const [boardSize, setBoardSize] = useState(8);
-  const [interval, setInterval] = useState(3000);
+  const [boardSize, setBoardSize] = useState(BOARD_SIZE);
+  const [interval, setInterval] = useState(INTERVAL);
   const dispatch = useContext(DispatchContext);
   return (
     <>
@@ -80,8 +80,8 @@ const Configuration: React.FC = () => {
             disabled={isSaveDisabled(boardSize, interval)}
             onClick={() => {
               dispatch(updateConfiguration(interval, boardSize));
-              setBoardSize(0);
-              setInterval(3000);
+              setBoardSize(BOARD_SIZE);
+              setInterval(INTERVAL);
             }}
           >
             Save Changes

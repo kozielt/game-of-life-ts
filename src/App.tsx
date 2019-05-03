@@ -3,21 +3,21 @@ import { css } from 'emotion';
 import { GameArea, Management } from './sections';
 import { GameStatus, reducer, State } from './reducer';
 import { tick } from './actions';
-import { initialBoardState } from './config';
+import { initialBoard, BOARD_SIZE, INTERVAL } from './config';
 
 const appClassName = css`
-  background-color: #282c34;
   min-height: 100vh;
   display: flex;
+  align-items: stretch;
 `;
 
 const initialState: State = {
-  boardState: initialBoardState,
+  boardState: initialBoard,
   round: 0,
   config: {
-    interval: 3000,
+    interval: INTERVAL,
     gameState: GameStatus.PAUSED,
-    boardSize: 8,
+    boardSize: BOARD_SIZE,
   },
 };
 
