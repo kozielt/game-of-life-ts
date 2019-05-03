@@ -2,7 +2,7 @@ import React, { useContext } from 'react';
 import { css } from 'emotion';
 import { resetGame, startGame, stopGame, editGame } from '../../actions';
 import { DispatchContext } from '../../App';
-import Button from './Button';
+import Button from '../../shared/Button';
 import { GameStatus } from '../../reducer';
 
 const buttonsCss = css`
@@ -26,7 +26,7 @@ const bottomButtonsCss = css`
     margin-bottom: 10px;
   }
 
-  @media only screen and (min-width: 1100px) {
+  @media only screen and (min-width: 1200px) {
     flex-direction: row;
     align-items: flex-end;
 

@@ -2,28 +2,40 @@ import React from 'react';
 import { css } from 'emotion';
 import Board from './board';
 import Status from './status';
+import SidePanelSwitcher from './SidePanelSwitcher';
 import { GameStatus, GameConfig } from '../reducer';
 
 const gameAreaCss = css`
+  position: relative;
   display: flex;
   flex-direction: column;
   flex-grow: 3;
-
-  @media only screen and (min-width: 1100px) {
-    flex-grow: 4;
-  }
 `;
 
 interface IGameArea {
   boardState: boolean[][];
   gameConfig: GameConfig;
+  isSidePanelVisible: boolean;
+  switchSidePanel: () => void;
 }
 
-const GameArea: React.FC<IGameArea> = ({ boardState, gameConfig }): JSX.Element => {
+const GameArea: React.FC<IGameArea> = ({
+  boardState,
+  gameConfig,
+  isSidePanelVisible,
+  switchSidePanel,
+}): JSX.Element => {
   return (
     <div className={gameAreaCss}>
       <Status gameConfig={gameConfig} />
-      <Board boardState={boardState} isEdit={GameStatus.EDIT === gameConfig.gameState} />
+      <Board
+        boardState={boardState}
+        isEdit={GameStatus.EDIT === gameConfig.gameState}
+      />
+      <SidePanelSwitcher
+        isSidePanelVisible={isSidePanelVisible}
+        switchSidePanel={switchSidePanel}
+      />
     </div>
   );
 };

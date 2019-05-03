@@ -1,4 +1,4 @@
-import React, { useEffect, useReducer } from 'react';
+import React, { useEffect, useReducer, useState } from 'react';
 import { css } from 'emotion';
 import { GameArea, Management } from './sections';
 import { GameStatus, reducer } from './reducer';
@@ -24,6 +24,7 @@ export const DispatchContext = React.createContext(Function.prototype);
 
 const App: React.FC = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
+  const [isSidePanelVisible, setSidePanelVisible] = useState(true);
   const { boardState, config } = state;
   const { interval, gameState } = config;
 
@@ -39,8 +40,13 @@ const App: React.FC = () => {
   return (
     <DispatchContext.Provider value={dispatch}>
       <div className={appClassName}>
-        <Management gameState={gameState} />
-        <GameArea boardState={boardState} gameConfig={config} />
+        <Management gameState={gameState} isVisible={isSidePanelVisible} />
+        <GameArea
+          boardState={boardState}
+          gameConfig={config}
+          isSidePanelVisible={isSidePanelVisible}
+          switchSidePanel={() => setSidePanelVisible(!isSidePanelVisible)}
+        />
       </div>
     </DispatchContext.Provider>
   );

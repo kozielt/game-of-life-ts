@@ -4,7 +4,7 @@ import { GAME_LIMITS, THEME } from '../../config';
 import { updateConfiguration } from '../../actions';
 import { DispatchContext } from '../../App';
 import { Text } from '../../shared';
-import Button from './Button';
+import Button from '../../shared/Button';
 import Header from './Header';
 
 const rowCss = css`
