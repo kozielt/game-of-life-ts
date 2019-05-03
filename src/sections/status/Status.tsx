@@ -18,7 +18,7 @@ const notActiveColor = css`
   color: orange;
 `;
 
-const intervalCss = css`
+const boardSizeCss = css`
   display: inline-block;
   margin-right: 10px;
 `;
@@ -43,8 +43,8 @@ const Status: React.FC<IStatus> = ({ gameConfig }): JSX.Element => {
           <span className={notActiveColor}>Edit</span>
         )}
       </h1>
-      <Text className={intervalCss}>Interval: {interval}ms</Text>
-      <Text>Board Size: {boardSize}</Text>
+      <Text className={boardSizeCss}>Board Size: {boardSize}</Text>
+      <Text>Interval: {interval} ms</Text>
     </div>
   );
 };
