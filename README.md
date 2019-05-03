@@ -1,8 +1,7 @@
-# Conway's Game of Life
+# Conway's Game of Life - [App](https://kozielt.github.io/game-of-life-ts/)
 
 ### Overview
-
-Implementation of [Conway's Game of Life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life) in React. 
+Implementation of [Conway's Game of Life](https://en.wikipedia.org/wiki/Conway%27s_Game_of_Life) in React.  
 
 ### Why
 I created this project mostly for practice and to try out a couple of things:
