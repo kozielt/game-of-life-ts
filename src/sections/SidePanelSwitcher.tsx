@@ -10,7 +10,7 @@ const switcherCss = css`
 
 const buttonCss = css`
   font-weight: bold;
-`
+`;
 
 interface ISidePanelSwitcher {
   isSidePanelVisible: boolean;

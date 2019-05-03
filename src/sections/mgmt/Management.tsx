@@ -6,7 +6,7 @@ import MgmtButtons from './MgmtButtons';
 
 const managementCss = css`
   height: 100vh;
-  width: 400px;
+  width: 450px;
   background-color: #363a42;
   transition: width 1s, margin 1s ease-in-out;
   
@@ -19,7 +19,7 @@ const managementCss = css`
 `;
 
 const hiddenCss = css`
-  margin-left: -400px;
+  margin-left: -450px;
   
   @media only screen and (max-width: 1200px) {
     margin-left: -300px;
