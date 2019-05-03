@@ -43,7 +43,7 @@ export function getNewCellState(
   return liveCellsAround === 3;
 }
 
-interface Config {
+export interface GameConfig {
   interval: number;
   gameState: GameStatus;
   boardSize: number;
@@ -51,7 +51,7 @@ interface Config {
 
 interface State {
   boardState: boolean[][];
-  config: Config;
+  config: GameConfig;
 }
 
 export function reducer(state: State, action: Action): State {

@@ -2,7 +2,7 @@ import React from 'react';
 import { css } from 'emotion';
 import Board from './board';
 import Status from './status';
-import { GameStatus } from '../reducer';
+import { GameStatus, GameConfig } from '../reducer';
 
 const gameAreaCss = css`
   display: flex;
@@ -10,23 +10,20 @@ const gameAreaCss = css`
   flex-grow: 3;
 
   @media only screen and (min-width: 1100px) {
-    flex-grow: 6;
+    flex-grow: 4;
   }
 `;
 
 interface IGameArea {
-  gameState: GameStatus;
   boardState: boolean[][];
+  gameConfig: GameConfig;
 }
 
-const GameArea: React.FC<IGameArea> = ({
-  gameState,
-  boardState,
-}): JSX.Element => {
+const GameArea: React.FC<IGameArea> = ({ boardState, gameConfig }): JSX.Element => {
   return (
     <div className={gameAreaCss}>
-      <Status gameStatus={gameState} />
-      <Board boardState={boardState} isEdit={GameStatus.EDIT === gameState} />
+      <Status gameConfig={gameConfig} />
+      <Board boardState={boardState} isEdit={GameStatus.EDIT === gameConfig.gameState} />
     </div>
   );
 };

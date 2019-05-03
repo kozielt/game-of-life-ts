@@ -3,6 +3,7 @@ import { css } from 'emotion';
 import { GAME_LIMITS, THEME } from '../../config';
 import { updateConfiguration } from '../../actions';
 import { DispatchContext } from '../../App';
+import { Text } from '../../shared';
 import Button from './Button';
 import Header from './Header';
 
@@ -14,8 +15,6 @@ const rowCss = css`
 
 const labelCss = css`
   flex-grow: 1;
-  color: ${THEME.DEFAULT_FONT_COLOR};
-  font-size: ${THEME.FONT_SIZE};
 `;
 
 const inputCss = css`
@@ -50,7 +49,7 @@ const Configuration: React.FC = () => {
       <div>
         <div className={rowCss}>
           <label htmlFor="boardSize" className={labelCss}>
-            Board Size
+            <Text>Board Size</Text>
           </label>
           <input
             className={inputCss}
@@ -64,7 +63,7 @@ const Configuration: React.FC = () => {
         </div>
         <div className={rowCss}>
           <label htmlFor="interval" className={labelCss}>
-            Interval
+            <Text>Interval</Text>
           </label>
           <input
             className={inputCss}

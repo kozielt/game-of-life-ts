@@ -1,7 +1,8 @@
 import React from 'react';
 import { css } from 'emotion';
 import { THEME } from '../../config';
-import { GameStatus } from '../../reducer';
+import { GameStatus, GameConfig } from '../../reducer';
+import { Text } from '../../shared';
 
 const statusCss = css`
   width: 100%;
@@ -17,25 +18,33 @@ const notActiveColor = css`
   color: orange;
 `;
 
+const intervalCss = css`
+  display: inline-block;
+  margin-right: 10px;
+`;
+
 interface IStatus {
-  gameStatus: GameStatus;
+  gameConfig: GameConfig;
 }
 
-const Status: React.FC<IStatus> = ({ gameStatus }): JSX.Element => {
+const Status: React.FC<IStatus> = ({ gameConfig }): JSX.Element => {
+  const { gameState, interval, boardSize } = gameConfig;
   return (
     <div className={statusCss}>
       <h1>
         Game Status:{' '}
-        {gameStatus === GameStatus.RUNNING && (
+        {gameState === GameStatus.RUNNING && (
           <span className={runningColor}>Running</span>
         )}
-        {gameStatus === GameStatus.PAUSED && (
+        {gameState === GameStatus.PAUSED && (
           <span className={notActiveColor}>Paused</span>
         )}
-        {gameStatus === GameStatus.EDIT && (
+        {gameState === GameStatus.EDIT && (
           <span className={notActiveColor}>Edit</span>
         )}
       </h1>
+      <Text className={intervalCss}>Interval: {interval}ms</Text>
+      <Text>Board Size: {boardSize}</Text>
     </div>
   );
 };

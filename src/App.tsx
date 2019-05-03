@@ -24,10 +24,8 @@ export const DispatchContext = React.createContext(Function.prototype);
 
 const App: React.FC = () => {
   const [state, dispatch] = useReducer(reducer, initialState);
-  const {
-    boardState,
-    config: { interval, gameState },
-  } = state;
+  const { boardState, config } = state;
+  const { interval, gameState } = config;
 
   useEffect(() => {
     const cleanupTimer = setInterval(() => {
@@ -42,7 +40,7 @@ const App: React.FC = () => {
     <DispatchContext.Provider value={dispatch}>
       <div className={appClassName}>
         <Management gameState={gameState} />
-        <GameArea gameState={gameState} boardState={boardState} />
+        <GameArea boardState={boardState} gameConfig={config} />
       </div>
     </DispatchContext.Provider>
   );
