@@ -22,7 +22,7 @@ interface IButton {
   className?: string;
 }
 
-const Button: React.FC<IButton> = ({ className, ...rest }): JSX.Element => {
+const Button: React.FC<IButton> = ({ className, ...rest }) => {
   return <button className={cx(buttonCss, className)} {...rest} />;
 };
 

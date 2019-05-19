@@ -32,7 +32,7 @@ const bottomButtonsCss = css`
 
     & > button {
       max-height: 36px;
-    
+
       :not(:last-child) {
         margin-right: 10px;
       }
@@ -44,7 +44,7 @@ interface IButtons {
   gameState: GameStatus;
 }
 
-const MgmtButtons: React.FC<IButtons> = ({ gameState }): JSX.Element => {
+const MgmtButtons: React.FC<IButtons> = ({ gameState }) => {
   const dispatch = useContext(DispatchContext);
   return (
     <div className={buttonsCss}>

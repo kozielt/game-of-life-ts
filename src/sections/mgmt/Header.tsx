@@ -8,7 +8,7 @@ const containerCss = css`
   color: ${THEME.DEFAULT_FONT_COLOR};
 `;
 
-const Header: React.FC = (): JSX.Element => (
+const Header: React.FC = () => (
   <div className={containerCss}>
     <h1>Configuration</h1>
   </div>

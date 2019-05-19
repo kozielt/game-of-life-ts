@@ -2,7 +2,6 @@ import React from 'react';
 import { css } from 'emotion';
 import BoardColumn from './BoardColumn';
 
-// todo modify flex grow via query
 const boardClassName = css`
   height: 100%;
   display: flex;
@@ -18,10 +17,7 @@ interface IBoard {
   isEdit: boolean;
 }
 
-const Board: React.FC<IBoard> = ({
-  boardState,
-  isEdit,
-}): JSX.Element => {
+const Board: React.FC<IBoard> = ({ boardState, isEdit }) => {
   return (
     <div className={boardClassName}>
       {boardState.map((rowArray, rowIndex) => (

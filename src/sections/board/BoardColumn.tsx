@@ -18,7 +18,7 @@ const BoardColumn: React.FC<IBoardColumn> = ({
   isEdit,
   rowIndex,
   rowState,
-}): JSX.Element => {
+}) => {
   const dispatch = useContext(DispatchContext);
   return (
     <div className={className}>

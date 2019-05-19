@@ -20,7 +20,7 @@ interface ISidePanelSwitcher {
 const SidePanelSwitcher: React.FC<ISidePanelSwitcher> = ({
   isSidePanelVisible,
   switchSidePanel,
-}): JSX.Element => {
+}) => {
   return (
     <div className={switcherCss}>
       <Button onClick={switchSidePanel} className={buttonCss}>

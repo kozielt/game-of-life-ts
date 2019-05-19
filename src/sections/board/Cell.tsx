@@ -26,11 +26,7 @@ interface ICell {
   editAction: () => void;
 }
 
-const Cell: React.FC<ICell> = ({
-  isActive,
-  isEdit,
-  editAction,
-}): JSX.Element => {
+const Cell: React.FC<ICell> = ({ isActive, isEdit, editAction }) => {
   return (
     <div
       onClick={() => isEdit && editAction()}

@@ -25,10 +25,10 @@ const textSpaceCss = css`
 
 interface IStatus {
   gameConfig: GameConfig;
-  round: number,
+  round: number;
 }
 
-const Status: React.FC<IStatus> = ({ gameConfig, round }): JSX.Element => {
+const Status: React.FC<IStatus> = ({ gameConfig, round }) => {
   const { gameState, interval, boardSize } = gameConfig;
   return (
     <div className={statusCss}>

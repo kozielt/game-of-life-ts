@@ -26,10 +26,10 @@ const GameArea: React.FC<IGameArea> = ({
   isSidePanelVisible,
   round,
   switchSidePanel,
-}): JSX.Element => {
+}) => {
   return (
     <div className={gameAreaCss}>
-      <Status gameConfig={gameConfig} round={round}/>
+      <Status gameConfig={gameConfig} round={round} />
       <Board
         boardState={boardState}
         isEdit={GameStatus.EDIT === gameConfig.gameState}
