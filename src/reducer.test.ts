@@ -43,7 +43,7 @@ describe('reducer', () => {
     expect(thirdResult).toBeTruthy();
   });
 
-  it('should return true if live cell has two active cells', () => {
+  it('should return true if live cell has two active neighbours', () => {
     const result = getNewCellState(
       1,
       [false, false, false],
@@ -61,7 +61,7 @@ describe('reducer', () => {
     expect(secondResult).toBeTruthy();
   });
 
-  it('should return true if live cell has three active cells', () => {
+  it('should return true if live cell has three active neighbours', () => {
     const result = getNewCellState(
       1,
       [false, false, false],
