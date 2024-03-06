@@ -1,10 +1,14 @@
 import React from 'react';
 import { createRoot } from 'react-dom/client';
 import './index.css';
-import App from './App';
+import {
+  createBrowserRouter,
+  RouterProvider,
+  Routes,
+  Route,
+} from 'react-router-dom';
+import GameOfLifeApp from './App';
 import * as serviceWorker from './serviceWorker';
-
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 const About = () => (
   <div
@@ -36,24 +40,26 @@ const Next = () => (
   </div>
 );
 
-const router = createBrowserRouter([
-  {
-    path: '',
-    element: <App />,
-  },
-  {
-    path: 'about',
-    element: <About />,
-  },
-  {
-    path: 'next',
-    element: <Next />,
-  },
-]);
+// 1️⃣ Changed from App to Root
+function Root() {
+  // 2️⃣ `BrowserRouter` component removed, but the <Routes>/<Route>
+  // component below are unchanged
+  return (
+    <Routes>
+      <Route path="/" element={<GameOfLifeApp />} />
+      <Route path="/about" element={<About />} />
+      <Route path="/next" element={<Next />} />
+    </Routes>
+  );
+}
 
-createRoot(document.getElementById('root')!).render(
-  <RouterProvider router={router} />,
-);
+const router = createBrowserRouter([{ path: '*', Component: Root }]);
+
+export default function App() {
+  return <RouterProvider router={router} />;
+}
+
+createRoot(document.getElementById('root')!).render(<App />);
 
 // If you want your app to work offline and load faster, you can change
 // unregister() to register() below. Note this comes with some pitfalls.
