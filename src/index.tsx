@@ -4,6 +4,7 @@ import './index.css';
 import {
   createBrowserRouter,
   RouterProvider,
+  createHashRouter,
   Routes,
   Route,
 } from 'react-router-dom';
@@ -53,7 +54,7 @@ function Root() {
   );
 }
 
-const router = createBrowserRouter([{ path: '*', Component: Root }]);
+const router = createHashRouter([{ path: '*', Component: Root }]);
 
 export default function App() {
   return <RouterProvider router={router} />;
