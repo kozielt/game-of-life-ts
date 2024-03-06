@@ -10,6 +10,7 @@ const textCss = css`
 
 interface IText {
   className?: string;
+  children?: React.ReactNode;
 }
 
 const Text: React.FC<IText> = ({ className, ...rest }) => (
