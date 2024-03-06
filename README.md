@@ -15,3 +15,9 @@ I'm using yarn as a package manager, so you need to type:
 ```bash
 $ yarn && yarn start 
 ```
+
+### Deployment
+
+```bash
+$ yarn run deploy
+```

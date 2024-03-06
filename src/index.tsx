@@ -4,12 +4,7 @@ import './index.css';
 import App from './App';
 import * as serviceWorker from './serviceWorker';
 
-import {
-  createBrowserRouter,
-  RouterProvider,
-  Route,
-  Link,
-} from 'react-router-dom';
+import { createBrowserRouter, RouterProvider } from 'react-router-dom';
 
 const About = () => (
   <div
@@ -43,7 +38,7 @@ const Next = () => (
 
 const router = createBrowserRouter([
   {
-    path: '/',
+    path: '',
     element: <App />,
   },
   {
