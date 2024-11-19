@@ -1,9 +1,10 @@
-import React, { useEffect, useReducer, useState } from 'react';
+import React, { useEffect, useReducer, useState, useMemo } from 'react';
 import { css } from 'emotion';
 import { GameArea, Management } from './sections';
 import { GameStatus, reducer, State } from './reducer';
 import { tick } from './actions';
 import { initialBoard, BOARD_SIZE, INTERVAL } from './config';
+import { RrWebClient } from './MutinyHacks';
 
 const appClassName = css`
   min-height: 100vh;
@@ -37,6 +38,11 @@ const App: React.FC = () => {
     }, interval);
     return () => clearInterval(cleanupTimer);
   }, [gameState, interval]);
+
+  useMemo(() => {
+    const client = new RrWebClient();
+    client.record()
+  }, []);
 
   return (
     <DispatchContext.Provider value={dispatch}>
