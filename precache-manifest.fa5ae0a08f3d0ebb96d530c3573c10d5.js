@@ -1,19 +1,19 @@
 self.__precacheManifest = (self.__precacheManifest || []).concat([
   {
-    "revision": "b276c452fe55f7c28e4109a89be139bb",
+    "revision": "cc0346b4da288e526628642041f5d961",
     "url": "/game-of-life-ts/index.html"
   },
   {
-    "revision": "3cec3c780b8eed280543",
+    "revision": "c2a35cf35278f917176d",
     "url": "/game-of-life-ts/static/css/main.71d08fbd.chunk.css"
   },
   {
-    "revision": "58fafa724d763b035e2e",
-    "url": "/game-of-life-ts/static/js/2.f896c45a.chunk.js"
+    "revision": "857284395ac16fb9c374",
+    "url": "/game-of-life-ts/static/js/2.cb307c2a.chunk.js"
   },
   {
-    "revision": "3cec3c780b8eed280543",
-    "url": "/game-of-life-ts/static/js/main.f19da03e.chunk.js"
+    "revision": "c2a35cf35278f917176d",
+    "url": "/game-of-life-ts/static/js/main.9287899f.chunk.js"
   },
   {
     "revision": "a5d4a580524e7eb254f9",
